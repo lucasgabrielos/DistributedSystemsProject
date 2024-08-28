@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\luqui\\source\\repos\\FinalProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|c:\\users\\luqui\\source\\repos\\finalproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|c:\\users\\luqui\\source\\repos\\finalproject\\core\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|solutionrelative:core\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|c:\\users\\luqui\\source\\repos\\finalproject\\core\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|solutionrelative:core\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|c:\\users\\luqui\\source\\repos\\finalproject\\core\\dbcontextproject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|solutionrelative:core\\dbcontextproject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|c:\\users\\luqui\\source\\repos\\finalproject\\api\\controllers\\exemplecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C815F198-74ED-48F1-8F73-CF642716DF8D}|FinalProject.csproj|solutionrelative:api\\controllers\\exemplecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAwwB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-28T00:16:11.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Core\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "Core\\Models\\UserModel.cs",
+              "ToolTip": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Core\\Models\\UserModel.cs",
+              "RelativeToolTip": "Core\\Models\\UserModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAUAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T23:48:54.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DbContextProject.cs",
+              "DocumentMoniker": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Core\\DbContextProject.cs",
+              "RelativeDocumentMoniker": "Core\\DbContextProject.cs",
+              "ToolTip": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Core\\DbContextProject.cs",
+              "RelativeToolTip": "Core\\DbContextProject.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T23:35:17.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Core\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Core\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Core\\Services\\UserService.cs",
+              "RelativeToolTip": "Core\\Services\\UserService.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAQwCIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T23:55:14.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ExempleController.cs",
+              "DocumentMoniker": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Api\\Controllers\\ExempleController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\ExempleController.cs",
+              "ToolTip": "C:\\Users\\luqui\\source\\repos\\FinalProject\\Api\\Controllers\\ExempleController.cs",
+              "RelativeToolTip": "Api\\Controllers\\ExempleController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-27T23:33:06.303Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
