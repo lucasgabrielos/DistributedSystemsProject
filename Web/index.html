@@ -23,22 +23,20 @@
 
 <body>
     <div id="root">
-        <home-component></home-component>
+        <body-component></body-component>
     </div>
 
     <script type="module">
-        import HomeComponent from './Components/home.js'; // Import the component
+        import BodyComponent from './Components/body.js';
 
         const App = Vue.createApp({
             components: {
-                'home-component': HomeComponent
+                'body-component': BodyComponent
             }
         });
 
-        $(document).ready(() => {
-            App.mount("#root");
-        });
+        App.mount("#root");
     </script>
-</body>
+
 
 </html>
