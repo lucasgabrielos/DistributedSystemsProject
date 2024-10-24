@@ -7,7 +7,7 @@ const BodyComponent = {
         HomeComponent: Home      
     },
     template:`
-      <div class="bg-green-300 w-full min-h-screen">
+      <div class=" w-full min-h-screen">
         <HeaderComponent />
         <HomeComponent />
       </div>
