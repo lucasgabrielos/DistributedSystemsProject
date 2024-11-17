@@ -21,24 +21,50 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/vue-router@4"></script>
 </head>
 
 <body>
     <div id="root">
-        <body-component></body-component>
+        <router-view></router-view>
     </div>
-
+    
+    
     <script type="module">
         import BodyComponent from './Components/body.js';
-
+        import HomeComponent from './Components/home.js';
+        import HeaderComponent from './Components/header.js';
+    
+        
+        const routes = [
+            { path: '/', component: BodyComponent },
+            { path: '/header', component: HomeComponent },
+            
+        ];
+    
+        
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes,
+        });
+    
+        
         const App = Vue.createApp({
             components: {
-                'body-component': BodyComponent
-            }
+                'body-component': BodyComponent,
+                'app-header': HeaderComponent,
+            },
         });
-
+    
+        
+        App.use(router);
+    
+       
         App.mount("#root");
     </script>
+    
+    
+    
 </body>
 
 </html>
