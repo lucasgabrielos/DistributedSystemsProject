@@ -11,8 +11,6 @@ const BodyComponent = {
         <HeaderComponent />
         <HomeComponent />
       </div>
-       
-  
     `,
 };
 
