@@ -6,8 +6,14 @@ const HomeComponent = {
         },
     },
     template: `
-    <div class="relative h-screen w-screen">
-      <div id="map" class="h-full w-full"></div>
+    <div class="flex h-screen w-screen">
+      <div class="w-1/3 h-full bg-white flex flex-col items-center justify-center">
+        
+      </div>
+      <div id="map" class="h-full w-2/3"></div>
+
+     
+      
     </div>
   `,
     data() {
