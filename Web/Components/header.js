@@ -45,19 +45,15 @@ const HeaderComponent = {
     </div>
   `,
     methods: {
-        async SendRequestSearchLocation() {
-            const response = await axios.get('https://localhost:7198/api/Location/geocode?', {
+         SendRequestSearchLocation() {
+           axios.get('https://localhost:7198/api/Location/geocode?', {
                 params: {
                     address: this.Search
                 }
-            });
-
-            if (response.status == 200) {
-                const coordenates = response.data;
-                console.log(coordenates);
-                this.$emit('update-map-by-coordinates', coordenates.longitude, coordenates.latitude)
-            } else {
-            }
+            }).then(response => {
+              const coordenates = response.data;
+              this.$emit('update-map-by-coordinates', coordenates)
+            })
         }
     }
 };
