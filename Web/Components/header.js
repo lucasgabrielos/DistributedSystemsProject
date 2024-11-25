@@ -43,6 +43,8 @@ const HeaderComponent = {
       </div>
     </div>
   </div>
+
+  
   `,
   methods: {
     SendRequestSearchLocation() {
