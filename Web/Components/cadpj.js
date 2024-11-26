@@ -58,6 +58,12 @@ const CadcpjComponent = {
                         class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-300 transition-all">
                 </div>
   
+                <!-- Textarea de descrição -->
+                <div>
+                    <textarea name="descricao" rows="4" placeholder="Descrição do Centro de Recolhimento" required
+                        class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white placeholder-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"></textarea>
+                </div>
+  
                 <div class="flex justify-center">
                     <button type="submit"
                         class="w-full md:w-auto px-8 py-3 bg-green-500 text-white font-bold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-4 focus:ring-green-400 transition-all">
@@ -72,4 +78,3 @@ const CadcpjComponent = {
   };
   
   export default CadcpjComponent;
-  

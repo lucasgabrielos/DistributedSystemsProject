@@ -3,12 +3,13 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
+using FinalProject.Core.Models;
 
 public static class GeocodingService
 {
     private static readonly HttpClient client = new HttpClient();
 
-    public static async Task<object?> GetCoordinatesAsync(string address)
+    public static async Task<Coordenates> GetCoordinatesAsync(string address)
     {
         string apiKey = "aca135324cab4112bc56239465c87b77";
         string url = $"https://api.opencagedata.com/geocode/v1/json?q={HttpUtility.UrlEncode(address)}&key={apiKey}";
@@ -25,13 +26,13 @@ public static class GeocodingService
                 var firstResult = results[0];
                 if (firstResult.TryGetProperty("geometry", out var geometry))
                 {
-                    double? lat = geometry.GetProperty("lat").GetDouble();
-                    double? lng = geometry.GetProperty("lng").GetDouble();
-                    return new {latitude = lat,  longitude = lng };
+                    var lat = geometry.GetProperty("lat").GetString();
+                    var lng = geometry.GetProperty("lng").GetString();
+                    return await Task.FromResult(new Coordenates(lat, lng));
                 }
             }
         }
 
-        return null;
+        return new Coordenates("", "");
     }
 }
