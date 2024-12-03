@@ -10,11 +10,20 @@ namespace FinalProject
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // Configuração de CORS para permitir todas as origens
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin() // Permite qualquer origem
+                          .AllowAnyMethod() // Permite qualquer método HTTP
+                          .AllowAnyHeader(); // Permite qualquer cabeçalho
+                });
+            });
 
             var app = builder.Build();
 
@@ -26,6 +35,9 @@ namespace FinalProject
             }
 
             app.UseHttpsRedirection();
+
+            // Adicione o middleware de CORS antes de MapControllers
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 

@@ -1,14 +1,13 @@
-using System.Text.Json;
 using FinalProject.Core.Dto;
 using FinalProject.Core.Models;
 using FinalProject.Core.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace FinalProject.Api.Controllers
 {
     [ApiController]
-
+    [Route("api/[controller]")]
     public class UserController(UserService userService) : ControllerBase
     {
         private readonly UserService userService = userService;
@@ -31,8 +30,10 @@ namespace FinalProject.Api.Controllers
             }
         }
 
-        
-        public IActionResult CadastraUsuario()
+
+        [HttpPost]
+        [Route("InsertNewUser")]
+        public IActionResult InsertNewUser()
         {
             var jsonUser = HttpContext.Request.Form["OrganizationObject"];
             if(string.IsNullOrEmpty(jsonUser)){

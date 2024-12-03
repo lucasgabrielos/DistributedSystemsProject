@@ -1,4 +1,5 @@
-﻿using FinalProject.Core.Dto;
+﻿using FinalProject.Core;
+using FinalProject.Core.Dto;
 using FinalProject.Core.Models;
 using FinalProject.Core.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -8,37 +9,44 @@ namespace FinalProject.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class OrganizationController(OrganizationService organizationService) : ControllerBase
+    public class OrganizationController() : ControllerBase
     {
-        private readonly OrganizationService organizationService = organizationService;
+        private readonly OrganizationService organizationService = new(new DbContextProject());
 
         [HttpPost]
         [Route("CreateOrganization")]
         public IActionResult CreateOrganization()
         {
-            var jsonUser = HttpContext.Request.Form["OrganizationObject"];
-            if(string.IsNullOrEmpty(jsonUser)){
-                return BadRequest();
-            }
-
-            var organizationDto = JsonSerializer.Deserialize<OrganizationDto>(HttpContext.Request.Form["OrganizationObject"]);
-            var organizationModel = new OrganizationModel()
+            try
             {
-                Email = organizationDto.Email,
-                Endereco = organizationDto.Endereco,
-                NomeDaOrganizacao = organizationDto.NomeDaOrganizacao,
-                NomeFantasia = organizationDto.NomeFantasia,
-                Senha = organizationDto.Senha,
-                Descricao = organizationDto.Descricao,
-            };
+                var jsonUser = HttpContext.Request.Form["OrganizationObject"];
+                if (string.IsNullOrEmpty(jsonUser))
+                    return BadRequest();
 
-            var geoLocation = GeocodingService.GetCoordinatesAsync(organizationModel.Endereco);
+                var organizationDto = JsonSerializer.Deserialize<OrganizationDto>(jsonUser);
+                var organizationModel = new OrganizationModel()
+                {
+                    Email = organizationDto.Email,
+                    Endereco = organizationDto.Endereco,
+                    NomeDaOrganizacao = organizationDto.NomeDaOrganizacao,
+                    NomeFantasia = organizationDto.NomeFantasia,
+                    Senha = organizationDto.Senha,
+                    Descricao = organizationDto.Descricao,
+                };
 
-            organizationModel.Latitude = geoLocation.Result.Latitude;
-            organizationModel.Longitude = geoLocation.Result.Longitude;
+                var geoLocation = GeocodingService.GetCoordinatesAsync(organizationModel.Endereco);
 
-            organizationService.AddNewOrganization(organizationModel);
-            return Created();
+                organizationModel.Latitude = geoLocation.Result.Latitude;
+                organizationModel.Longitude = geoLocation.Result.Longitude;
+
+                organizationService.AddNewOrganization(organizationModel);
+                return Created();
+            }
+            catch (Exception ex)
+            {
+                var teste = ex;
+                throw;
+            }
         }
     }
 }
