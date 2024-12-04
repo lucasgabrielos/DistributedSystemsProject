@@ -6,41 +6,33 @@ const HomeComponent = {
         },
     },
     template: `
-    <div class="flex h-screen w-screen">
-      
+    <div class="relative h-screen w-screen">
       <div id="map" class="h-full w-full"></div>
-
-     
-      
     </div>
   `,
     data() {
         return {
-            map: null, // Referência ao mapa
-            marker: null, // Referência ao marcador
+            map: null,
+            marker: null,
         };
     },
     watch: {
         coordenates: {
             handler(val) {
                 if (this.map) {
-                    // Atualiza o mapa para a nova posição
                     this.map.setView([val.latitude, val.longitude], 13);
-
-                    // Atualiza o marcador para a nova posição
                     if (this.marker) {
                         this.marker.setLatLng([val.latitude, val.longitude]);
                     }
                 }
             },
-            immediate: true, // Para mover o mapa logo na inicialização
+            immediate: true,
         },
     },
     methods: {
         MountMapByCoordinates() {
             const { longitude, latitude } = this.coordenates;
 
-            // Cria o mapa apenas se ainda não existir
             if (!this.map) {
                 this.map = L.map('map', {
                     center: [latitude, longitude],
@@ -48,10 +40,10 @@ const HomeComponent = {
                     zoomControl: false,
                 });
 
-                // Adiciona os tiles ao mapa
                 const map1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 });
+
                 const hot = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution:
@@ -60,7 +52,6 @@ const HomeComponent = {
 
                 map1.addTo(this.map);
 
-                // Adiciona controle de camadas
                 L.control.layers(
                     {
                         Osm: map1,
@@ -70,11 +61,27 @@ const HomeComponent = {
                     { collapsed: false }
                 ).addTo(this.map);
 
-                // Adiciona o marcador inicial
+
                 this.marker = L.marker([latitude, longitude]);
+
+
+                this.marker.bindPopup(`
+                    <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-4 rounded-lg max-w-sm shadow-lg">
+                        <h3 class="text-lg font-semibold">Localização da ONG</h3>
+                        <p class="mt-2 text-sm leading-relaxed">
+                            Aqui está a descrição da ONG. Informações adicionais podem ser adicionadas neste espaço.
+                        </p>
+                    </div>
+                `, { autoClose: false });
+
+
+
+                this.marker.on('click', () => {
+                    this.marker.openPopup();
+                });
+
                 this.marker.addTo(this.map);
 
-                // Corrige possíveis problemas de renderização
                 setTimeout(() => {
                     this.map.invalidateSize();
                 }, 100);

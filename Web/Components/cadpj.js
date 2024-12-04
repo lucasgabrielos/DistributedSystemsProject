@@ -75,6 +75,19 @@ const CadcpjComponent = {
   
       </body>
     `,
+    methods: {
+        formatPhoneNumber(event) {
+            let input = event.target.value.replace(/\D/g, '');
+            if (input.length <= 2) {
+                input = `(${input}`;
+            } else if (input.length <= 6) {
+                input = `(${input.slice(0, 2)}) ${input.slice(2)}`;
+            } else {
+                input = `(${input.slice(0, 2)}) ${input.slice(2, 6)}-${input.slice(6, 10)}`;
+            }
+            this.OrganizationObject.Numero = input;
+        },
+    }
   };
   
   export default CadcpjComponent;
