@@ -13,6 +13,34 @@ namespace FinalProject.Api.Controllers
     {
         private readonly OrganizationService organizationService = new(new DbContextProject());
 
+
+        [HttpGet]
+        [Route("ListOrganization")]
+        public IActionResult ListOrganization()
+        {
+
+            var listOrganizations = organizationService.ListOrganizationModel();
+            return Ok(listOrganizations);
+        }
+
+        [HttpPost]
+        [Route("UpdateOrganization")]
+        public IActionResult UpdateOrganization(string organizationId)
+        {
+            var jsonUser = HttpContext.Request.Form["OrganizationObject"];
+            if (string.IsNullOrEmpty(jsonUser))
+                return BadRequest();
+
+            var organizationDto = JsonSerializer.Deserialize<OrganizationDto>(jsonUser);
+            var organization = organizationService.FindOrganization(organizationId);
+
+            if (organization == null)
+                return NotFound("Nenhuma organização encontrada");
+
+            organizationService.EditOrganization(organization);
+            return Ok(organization);
+        }
+
         [HttpPost]
         [Route("CreateOrganization")]
         public IActionResult CreateOrganization()

@@ -11,28 +11,36 @@ public static class GeocodingService
 
     public static async Task<Coordenates> GetCoordinatesAsync(string address)
     {
-        string apiKey = "aca135324cab4112bc56239465c87b77";
-        string url = $"https://api.opencagedata.com/geocode/v1/json?q={HttpUtility.UrlEncode(address)}&key={apiKey}";
-        HttpResponseMessage response = await client.GetAsync(url);
-        if (response.IsSuccessStatusCode)
+        try
         {
-            string jsonResponse = await response.Content.ReadAsStringAsync();
-
-            using var document = JsonDocument.Parse(jsonResponse);
-            var root = document.RootElement;
-
-            if (root.TryGetProperty("results", out var results) && results.GetArrayLength() > 0)
+            string apiKey = "aca135324cab4112bc56239465c87b77";
+            string url = $"https://api.opencagedata.com/geocode/v1/json?q={HttpUtility.UrlEncode(address)}&key={apiKey}&countrycode=BR&language=pt";
+            HttpResponseMessage response = await client.GetAsync(url);
+            if (response.IsSuccessStatusCode)
             {
-                var firstResult = results[0];
-                if (firstResult.TryGetProperty("geometry", out var geometry))
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                using var document = JsonDocument.Parse(jsonResponse);
+                var root = document.RootElement;
+
+                if (root.TryGetProperty("results", out var results) && results.GetArrayLength() > 0)
                 {
-                    var lat = geometry.GetProperty("lat").GetString();
-                    var lng = geometry.GetProperty("lng").GetString();
-                    return await Task.FromResult(new Coordenates(lat, lng));
+                    var firstResult = results[0];
+                    if (firstResult.TryGetProperty("geometry", out var geometry))
+                    {
+                        var lat = geometry.GetProperty("lat").ToString();
+                        var lng = geometry.GetProperty("lng").ToString();
+                        return await Task.FromResult(new Coordenates(lat, lng));
+                    }
                 }
             }
-        }
 
-        return new Coordenates("", "");
+            return new Coordenates("", "");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
     }
 }
