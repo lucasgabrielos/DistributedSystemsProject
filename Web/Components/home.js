@@ -12,6 +12,9 @@ const HomeComponent = {
     template: `
     <div class="flex h-screen w-screen">
       <div id="map" class="h-full w-full"></div>
+
+     
+      
     </div>
   `,
     data() {
@@ -53,6 +56,7 @@ const HomeComponent = {
         MountMapByCoordinates() {
             const { longitude, latitude } = this.coordenates;
 
+            // Cria o mapa apenas se ainda não existir
             if (!this.map) {
                 this.map = L.map('map', {
                     center: [latitude, longitude],
@@ -60,10 +64,10 @@ const HomeComponent = {
                     zoomControl: false,
                 });
 
+                // Adiciona os tiles ao mapa
                 const map1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 });
-
                 const hot = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution:
@@ -72,6 +76,7 @@ const HomeComponent = {
 
                 map1.addTo(this.map);
 
+                // Adiciona controle de camadas
                 L.control.layers(
                     {
                         Osm: map1,
@@ -100,6 +105,7 @@ const HomeComponent = {
 
                 this.marker.addTo(this.map);
 
+                // Corrige possíveis problemas de renderização
                 setTimeout(() => {
                     this.map.invalidateSize();
                 }, 100);
