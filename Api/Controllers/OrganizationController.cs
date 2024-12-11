@@ -78,6 +78,7 @@ namespace FinalProject.Api.Controllers
                     NomeDaOrganizacao = organizationDto.NomeDaOrganizacao,
                     NomeFantasia = organizationDto.NomeFantasia,
                     Senha = organizationDto.Senha,
+                    CEP = organizationDto.CEP,
                     Descricao = organizationDto.Descricao,
                 };
 
