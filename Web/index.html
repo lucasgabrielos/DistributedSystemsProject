@@ -7,8 +7,8 @@
     <title>Document</title>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script type="module" src="Components/home.js"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,11 +16,11 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/vue-router@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel= "stylesheet" href= "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css" >
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
 </head>
 
 <body>
-    <div id="root">
+    <div id="root" class="w-full min-h-screen">
         <router-view></router-view>
     </div>
     
@@ -33,6 +33,7 @@
         import CadcpfComponent from './Components/cadcpf.js';
         import CadpjComponent from './Components/cadpj.js';
         import PagcadComponent from './Components/pagcad.js';
+        import PagcnpjComponent from './Components/pagcnpj.js'
        
     
         
@@ -42,12 +43,13 @@
             { path: '/cadcpf', component: CadcpfComponent },
             { path: '/cadpj', component: CadpjComponent },
             { path: '/pagcad', component: PagcadComponent },
+            { path: '/pagcnpj', component: PagcnpjComponent },
            
             
             
         ];
     
-        
+    
         const router = VueRouter.createRouter({
             history: VueRouter.createWebHashHistory(),
             routes,
@@ -67,8 +69,6 @@
        
         App.mount("#root");
     </script>
-    
-    
     
 </body>
 

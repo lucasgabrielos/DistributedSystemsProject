@@ -23,19 +23,38 @@ namespace FinalProject.Api.Controllers
             return Ok(listOrganizations);
         }
 
+        [HttpGet]
+        [Route("GetOrganizationByEmailAndPassword")]
+        public IActionResult GetOrganizationByEmailAndPassword(string email, string password)
+        {
+            var organization = organizationService.GetOrganizationByEmailAndPassword(email, password);
+            if (organization == null)
+                return NoContent();
+
+            return Ok(organization);
+        }
+
         [HttpPost]
         [Route("UpdateOrganization")]
-        public IActionResult UpdateOrganization(string organizationId)
+        public IActionResult UpdateOrganization()
         {
             var jsonUser = HttpContext.Request.Form["OrganizationObject"];
             if (string.IsNullOrEmpty(jsonUser))
                 return BadRequest();
 
             var organizationDto = JsonSerializer.Deserialize<OrganizationDto>(jsonUser);
-            var organization = organizationService.FindOrganization(organizationId);
+            var organization = organizationService.FindOrganization(organizationDto.Id);
 
             if (organization == null)
                 return NotFound("Nenhuma organização encontrada");
+
+            organization.Senha = organizationDto.Senha;
+            organization.Email = organizationDto.Email;
+            organization.Endereco = organizationDto.Endereco;
+            organization.Descricao = organizationDto.Descricao;
+            organization.CEP = string.IsNullOrEmpty(organizationDto.CEP) ? string.Empty : organization.CEP;
+            organization.NomeDaOrganizacao = organizationDto.NomeDaOrganizacao;
+            organization.NomeFantasia = organizationDto.NomeFantasia;
 
             organizationService.EditOrganization(organization);
             return Ok(organization);

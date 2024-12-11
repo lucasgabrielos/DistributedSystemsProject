@@ -13,68 +13,66 @@ namespace FinalProject.Core.Services
 
         public void EditOrganization(OrganizationModel organizationModel)
         {
-            context.Organization.Update(organizationModel);
+            context.Entry(organizationModel).CurrentValues.SetValues(organizationModel);
             context.SaveChanges();
         }
-        public OrganizationModel FindOrganization(string organizationId)
+        public OrganizationModel FindOrganization(int organizationId)
         {
             return context.Organization.Find(organizationId);
         }
 
-        public OrganizationModel GetOrganizationByName(string organizationName)
+        public OrganizationModel GetOrganizationByEmailAndPassword(string email, string password)
         {
             try
             {
-                var query = $"select * from organization where NomeDaOrganizacao = '{organizationName}'";
-
-                // Criando conexão
+                var query = "SELECT * FROM organization WHERE Email = @Email AND Senha = @Senha";
                 using (MySqlConnection connection = new MySqlConnection(context.ConnectionString))
                 {
-                    // Abrindo conexão
                     connection.Open();
 
-                    // Criando comando SQL
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        // Executando comando e lendo resultados
+                        // Definindo parÃ¢metros para evitar SQL Injection
+                        command.Parameters.AddWithValue("@Email", email);
+                        command.Parameters.AddWithValue("@Senha", password);
+
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            // Verificando se há linhas retornadas
-                            if (reader.HasRows)
+                            if (reader.Read())
                             {
-                                // Lendo os dados linha por linha
-
-                                var organization = new OrganizationModel
+                                return new OrganizationModel
                                 {
-                                    Id = Convert.ToInt32(reader["Id"]),
-                                    NomeDaOrganizacao = reader["NomeDaOrganizacao"].ToString(),
-                                    NomeFantasia = reader["NomeFantasia"].ToString(),
-                                    Endereco = reader["Endereco"].ToString(),
-                                    CEP = reader["CEP"].ToString(),
-                                    Longitude = reader["Longitude"].ToString(),
-                                    Latitude = reader["Latitude"].ToString(),
-                                    Senha = reader["Senha"].ToString(),
-                                    Email = reader["Email"].ToString(),
-                                    Descricao = reader["Descricao"].ToString(),
-                                    DtCriacao = Convert.ToDateTime(reader["DtCriacao"])
+                                    Id = reader.GetInt32("Id"),
+                                    NomeDaOrganizacao = reader["NomeDaOrganizacao"]?.ToString(),
+                                    NomeFantasia = reader["NomeFantasia"]?.ToString(),
+                                    Endereco = reader["Endereco"]?.ToString(),
+                                    CEP = reader["CEP"]?.ToString(),
+                                    Longitude = reader["Longitude"]?.ToString(),
+                                    Latitude = reader["Latitude"]?.ToString(),
+                                    Senha = reader["Senha"]?.ToString(),
+                                    Email = reader["Email"]?.ToString(),
+                                    Descricao = reader["Descricao"]?.ToString(),
+                                    DtCriacao = reader.GetDateTime("DtCriacao")
                                 };
-
-                                return organization;
-                            }
-                            else
-                            {
-                                // Caso não tenha resultados, retornamos uma lista vazia
-                                return null;
                             }
                         }
                     }
                 }
             }
+            catch (MySqlException sqlEx)
+            {
+                // Logar erros de banco de dados
+                Console.WriteLine($"Erro de banco de dados: {sqlEx.Message}");
+            }
             catch (Exception ex)
             {
-                return null;
+                // Logar outros erros
+                Console.WriteLine($"Erro inesperado: {ex.Message}");
             }
+
+            return null; // Retornar null se ocorrer algum problema
         }
+
 
         public List<OrganizationModel> ListOrganizationModel()
         {
@@ -83,10 +81,10 @@ namespace FinalProject.Core.Services
             {
                 var query = "select * from organization";
 
-                // Criando conexão
+                // Criando conexï¿½o
                 using (MySqlConnection connection = new MySqlConnection(context.ConnectionString))
                 {
-                    // Abrindo conexão
+                    // Abrindo conexï¿½o
                     connection.Open();
 
                     // Criando comando SQL
@@ -95,11 +93,11 @@ namespace FinalProject.Core.Services
                         // Executando comando e lendo resultados
                         using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            // Verificando se há linhas retornadas
+                            // Verificando se hï¿½ linhas retornadas
                             if (reader.HasRows)
                             {
                                 // Lendo os dados linha por linha
-                                while (reader.Read())  // 'Read' é chamado para mover o cursor para a primeira linha
+                                while (reader.Read())  // 'Read' ï¿½ chamado para mover o cursor para a primeira linha
                                 {
                                     var organization = new OrganizationModel
                                     {
@@ -121,7 +119,7 @@ namespace FinalProject.Core.Services
                             }
                             else
                             {
-                                // Caso não tenha resultados, retornamos uma lista vazia
+                                // Caso nï¿½o tenha resultados, retornamos uma lista vazia
                                 return listOrganization;
                             }
                         }

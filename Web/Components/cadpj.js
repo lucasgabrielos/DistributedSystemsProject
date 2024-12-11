@@ -6,8 +6,8 @@ const CadcpjComponent = {
                 NomeFantasia: '',
                 Endereco: '',
                 CEP: '',
-                Longitude: '', // Se necessário
-                Latitude: '',  // Se necessário
+                Longitude: '', 
+                Latitude: '',  
                 Senha: '',
                 Email: '',
                 Descricao: '',
@@ -25,37 +25,36 @@ const CadcpjComponent = {
 
         <form id="cadastroCentroForm" class="space-y-6">
 
-          <!-- Campo de Nome da Organização -->
+          
           <div>
             <input type="text" v-model="organization.NomeDaOrganizacao" placeholder="Nome Empresarial" required
               class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white placeholder-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
           </div>
 
-          <!-- Campo de Nome Fantasia -->
           <div>
             <input type="text" v-model="organization.NomeFantasia" placeholder="Nome Fantasia" required
               class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white placeholder-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
           </div>
 
-          <!-- Campo de CEP -->
+          
           <div>
             <input type="text" v-model="organization.CEP" placeholder="CEP" required
               class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white placeholder-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
           </div>
 
-          <!-- Campo de Endereço -->
+          
           <div>
             <input type="text" v-model="organization.Endereco" placeholder="Endereço" required
               class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white placeholder-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
           </div>
 
-          <!-- Campo de Email -->
+          
           <div>
             <input type="email" v-model="organization.Email" placeholder="E-mail" required
               class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-300 transition-all">
           </div>
 
-          <!-- Campos de Senha -->
+         
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <input type="password" v-model="organization.Senha" placeholder="Senha" required
               class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-300 transition-all">
@@ -63,7 +62,7 @@ const CadcpjComponent = {
               class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 placeholder-gray-300 transition-all">
           </div>
 
-          <!-- Textarea de Descrição -->
+          
           <div>
             <textarea v-model="organization.Descricao" rows="4" placeholder="Descrição do Centro de Recolhimento" required
               class="w-full px-4 py-3 bg-white/20 border border-green-300 text-white placeholder-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"></textarea>

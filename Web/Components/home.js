@@ -5,25 +5,34 @@ const HomeComponent = {
             required: true,
         },
         list_organizations: {
-            type: Array, // Alterado para Array, já que list_organizations parece ser uma lista
+            type: Array,
             required: true
         },
     },
     template: `
     <div class="flex h-screen w-screen">
       <div id="map" class="h-full w-full"></div>
-
-     
-      
     </div>
   `,
     data() {
         return {
             map: null,
-            markers: [], // Armazenar marcadores aqui
+            markers: [],
         };
     },
     watch: {
+        coordenates: {
+            handler(val) {
+                if (this.map) {
+                    this.map.setView([val.latitude, val.longitude], 13);
+        
+                    if (this.marker) {
+                        this.marker.setLatLng([val.latitude, val.longitude]);
+                    }
+                }
+            },
+            immediate: true, // Para mover o mapa logo na inicialização
+        },
         list_organizations: {
             handler(val) {
                 if (this.map && Array.isArray(val)) {
@@ -44,19 +53,18 @@ const HomeComponent = {
                             </div>
                         `);
 
-                        marker.addTo(this.map); // Adiciona o marcador ao mapa
-                        this.markers.push(marker); // Adiciona o marcador à lista de marcadores
+                        marker.addTo(this.map);
+                        this.markers.push(marker); 
                     });
                 }
             },
-            immediate: true, // Executar a função ao inicializar
+            immediate: true,
         },
     },
     methods: {
         MountMapByCoordinates() {
             const { longitude, latitude } = this.coordenates;
 
-            // Cria o mapa apenas se ainda não existir
             if (!this.map) {
                 this.map = L.map('map', {
                     center: [latitude, longitude],
@@ -64,10 +72,10 @@ const HomeComponent = {
                     zoomControl: false,
                 });
 
-                // Adiciona os tiles ao mapa
                 const map1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 });
+
                 const hot = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution:
@@ -76,7 +84,6 @@ const HomeComponent = {
 
                 map1.addTo(this.map);
 
-                // Adiciona controle de camadas
                 L.control.layers(
                     {
                         Osm: map1,
@@ -87,25 +94,10 @@ const HomeComponent = {
 
                 this.marker = L.marker([latitude, longitude]);
 
-                this.marker.bindPopup(`
-                    <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white p-4 rounded-lg max-w-sm shadow-lg">
-                        <h3 class="text-lg font-bold mb-2">Nome da ONG</h3>
-                        <p class="text-sm mb-2">
-                            <strong>Localização:</strong> Latitude ${latitude}, Longitude ${longitude}
-                        </p>
-                        <p class="text-sm leading-relaxed">
-                            Breve descrição da ONG: Esta ONG atua para apoiar comunidades locais, promovendo educação, saúde e sustentabilidade ambiental.
-                        </p>
-                    </div>
-                `, { autoClose: false, closeOnClick: false });
-
-                this.marker.on('click', () => {
-                    this.marker.openPopup();
-                });
+               
 
                 this.marker.addTo(this.map);
 
-                // Corrige possíveis problemas de renderização
                 setTimeout(() => {
                     this.map.invalidateSize();
                 }, 100);

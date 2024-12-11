@@ -8,6 +8,12 @@ const HeaderComponent = {
   template: `
   <div class="w-full shadow-md bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 ">
     <div class="flex flex-col items-center lg:flex-row lg:justify-between p-4 lg:p-6">
+      
+      
+      <div class="flex items-center mb-4 lg:mb-0">
+        <img src="./img/LogoMapeiaONG_v3.webp" alt="Logo ou imagem" class="h-12 w-auto mr-4">
+      </div>
+      
       <!-- Barra de Pesquisa -->
       <form class="w-full flex justify-center items-center space-x-2 mb-4 lg:mb-0">
         <input
@@ -23,28 +29,23 @@ const HeaderComponent = {
         </button>
       </form>
 
-      
+      <!-- Botões -->
       <div class="flex justify-center space-x-4">
-        
         <a href="#/login" class="flex flex-col items-center">
           <button class="flex flex-col items-center focus:outline-none pt-1">
             <img width="48" height="48" src="https://img.icons8.com/sf-regular/48/FFFFFF/login-rounded-right.png" alt="login-rounded-right"/>
             <span class="text-xs lg:text-sm mt-1 text-white pt-1">Login</span>
           </button>
         </a>
-
-        
         <a href="#/pagcad" class="flex flex-col items-center">
           <button class="flex flex-col items-center focus:outline-none">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACtklEQVR4nO2ZO2gUQRjHxzeKMQ+jWKggYqEpRAs7QckRJCiS00IUwSeIgmKsAoKCkMpHIcQYRA2+wMrOwkYUDBYGRRvxFS0FFSx8BPQnH/kWPse9vWP33Iy4PxjYvf3vzH/mvplv5s65goKCgoLQABqALuCwFrlucKEDNAKngK/8iXx2EpjlQgRYADyjOk+B+S4kgBnAY8/oI+C0lmHvmdxPd6EAHPNCZVuMZjvwzeiOuhAApgKfjLE9Cdp9RvcRmJKv23hT7cbUS2BignYS8Mro1+brNt7UAWOovwb9eaPfn4/LZEM9xlBvDfpeo+/Jx2Wyob3G0NUa9NeNfnc+LpMNrTCGPgAzq2RombwRy/N1G29qAvDCmDqboO0zuufyrgsBWff5nQtAq3k+B7joaba4kPBiWxjVjDus15YrLjQYS2iDVOeSaF2oAOuB+8APY1qu7wGd7l8BaAFWamkZbz//D4wdalYDG4EdwFZgA9AGTHYhAqwCzuja/jNhAst2+g5wCJgdgvES8JB0jMgpbjzD5EYFY6N6GrulS+ZNXYHEcMRdL9E1A5uBbv0RQK6b/pb5xcBrz/R34DKwDpiW8O4SYGd0nATmAgMxiS4aiH7J4vU0vwh45zV0DViYoi6Z1G9rDLW2emVaCQ179k21n9GRjzP/ABiq0Ils3wRwwltNShnqkrCJo907olrOZTEvk+yzqexgxrriYl5YoyUOmWeNaRuV1SHiSZZ9vK4wpOiAUE7b6GC9zrHAES/mOzSflPTbaTb3HaqJ6E7b6HGy05myA0P16MA84H3GDuzSujZlCKGuVB3QhpcCt4EvKTswoPU05T6J641m2DiSltE+Fwp6yLd7o4ihConsjd07BYFuJUYqjLZvfpkLEaBVMqzGd1zM9wU38gnb87L5T60czIQtKHBh8wsyGqZUWGDhWQAAAABJRU5ErkJggg==" alt="add-user-male">          
-          <span class="text-xs lg:text-sm mt-1 text-white">Cadastro</span>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAACtklEQVR4nO2ZO2gUQRjHxzeKMQ+jWKggYqEpRAs7QckRJCiS00IUwSeIgmKsAoKCkMpHIcQYRA2+wMrOwkYUDBYGRRvxFS0FFSx8BPQnH/kWPse9vWP33Iy4PxjYvf3vzH/mvplv5s65goKCgoLQABqALuCwFrlucKEDNAKngK/8iXx2EpjlQgRYADyjOk+B+S4kgBnAY8/oI+C0lmHvmdxPd6EAHPNCZVuMZjvwzeiOuhAApgKfjLE9Cdp9RvcRmJKv23hT7cbUS2BignYS8Mro1+brNt7UAWOovwb9eaPfn4/LZEM9xlBvDfpeo+/Jx2Wyob3G0NUa9NeNfnc+LpMNrTCGPgAzq2RombwRy/N1G29qAvDCmDqboO0zuufyrgsBWff5nQtAq3k+B7joaba4kPBiWxjVjDus15YrLjQYS2iDVOeSaF2oAOuB+8APY1qu7wGd7l8BaAFWamkZbz//D4wdalYDG4EdwFZgA9AGTHYhAqwCzuja/jNhAst2+g5wCJgdgvES8JB0jMgpbjzD5EYFY6N6GrulS+ZNXYHEcMRdL9E1A5uBbv0RQK6b/pb5xcBrz/R34DKwDpiW8O4SYGd0nATmAgMxiS4aiH7J4vU0vwh45zV0DViYoi6Z1G9rDLW2emVaCQ179k21n9GRjzP/ABiq0Ils3wRwwltNShnqkrCJo907olrOZTEvk+yzqexgxrriYl5YoyUOmWeNaRuV1SHiSZZ9vK4wpOiAUE7b6GC9zrHAES/mOzSflPTbaTb3HaqJ6E7b6HGy05myA0P16MA84H3GDuzSujZlCKGuVB3QhpcCt4EvKTswoPU05T6J641m2DiSltE+Fwp6yLd7o4ihConsjd07BYFuJUYqjLZvfpkLEaBVMqzGd1zM9wU38gnb87L5T60czIQtKHBh8wsyGqZUWGDhWQAAAABJRU5ErkJggg==" alt="add-user-male">
+            <span class="text-xs lg:text-sm mt-1 text-white">Cadastro</span>
           </button>
         </a>
       </div>
     </div>
   </div>
-
-  
   `,
   methods: {
     SendRequestSearchLocation() {
@@ -54,6 +55,7 @@ const HeaderComponent = {
         }
       }).then(response => {
         const coordinates = response.data;
+        console.log(coordinates);
         this.$emit('update-map-by-coordinates', coordinates);
       }).catch(error => {
         console.error('Erro ao buscar localização:', error);

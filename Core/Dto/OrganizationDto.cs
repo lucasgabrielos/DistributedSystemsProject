@@ -2,6 +2,7 @@
 {
     public class OrganizationDto
     {
+        public int Id { get; set; }
         public string NomeDaOrganizacao { get; set; }
         public string NomeFantasia { get; set; }
         public string Endereco { get; set; }
